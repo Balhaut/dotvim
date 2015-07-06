@@ -11,7 +11,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 " Plugin 'scrooloose/syntastic'
 " Plugin 't9md/vim-chef'
-" Plugin 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 " Plugin 'Lokaltog/vim-easymotion'
 " Plugin 'avakhov/vim-yaml'
 " Plugin 'tomtom/tcomment_vim'
@@ -37,25 +37,27 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 " Reloads vimrc changes
-" autocmd BufWritePost ~/.vimrc source ~/.vimrc
+autocmd BufWritePost ~/.vimrc source ~/.vimrc
 set showcmd
-let mapleader = ","
+let mapleader = " "
 
 " Set theme
 syntax enable
 set background=dark
 colorscheme solarized
 
-
 " CtrlP
-" let g:ctrlp_map = '<c-p>'
-" let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+noremap <C-a> :CtrlP ~/Projects/<CR>
 
 " Silver Surfer
 " let g:ackprg = 'ag --vimgrep'
 
+map <Leader>t :NERDTree<CR>
+
 " NERDTree Tabs
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+map <Leader>n <plug>:NERDTreeTabsToggle<CR>
 let g:nerdtree_tabs_open_on_gui_startup=1
 let g:nerdtree_tabs_open_on_console_startup=1
 let g:nerdtree_tabs_smart_startup_focus=1
