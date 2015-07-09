@@ -58,6 +58,6 @@ map <Leader>t :NERDTree<CR>
 
 " NERDTree Tabs
 map <Leader>n <plug>:NERDTreeTabsToggle<CR>
-let g:nerdtree_tabs_open_on_gui_startup=1
-let g:nerdtree_tabs_open_on_console_startup=1
-let g:nerdtree_tabs_smart_startup_focus=1
+"let g:nerdtree_tabs_open_on_gui_startup=1
+"let g:nerdtree_tabs_open_on_console_startup=1
+"let g:nerdtree_tabs_smart_startup_focus=1
