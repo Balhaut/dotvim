@@ -11,11 +11,11 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 " Plugin 'scrooloose/syntastic'
 " Plugin 't9md/vim-chef'
-Plugin 'kien/ctrlp.vim'
-" Plugin 'Lokaltog/vim-easymotion'
-" Plugin 'avakhov/vim-yaml'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'avakhov/vim-yaml'
 " Plugin 'tomtom/tcomment_vim'
 " Plugin 'ggreer/the_silver_searcher'
+Plugin 'wincent/command-t'
 
 " Themes
 Plugin 'altercation/vim-colors-solarized'
@@ -37,27 +37,37 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 " Reloads vimrc changes
+autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufWritePost ~/.vimrc source ~/.vimrc
 set showcmd
-let mapleader = " "
+let mapleader = '\' 
 
 " Set theme
 syntax enable
 set background=dark
 colorscheme solarized
-
-" CtrlP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-noremap <C-a> :CtrlP ~/Projects/<CR>
+let g:solarized_termcolors=256
 
 " Silver Surfer
 " let g:ackprg = 'ag --vimgrep'
 
-map <Leader>t :NERDTree<CR>
+" CommandT bindings
+map <Leader>g :CommandT /Users/carnold/Projects<CR>
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to
+" EasyMotion.
+" " Without these mappings, `n` & `N` works fine. (These mappings just provide
+" " different highlight method and have some other features )
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
+" NERDTree bindings
+map <Leader>e :NERDTree<CR>
 
 " NERDTree Tabs
-map <Leader>n <plug>:NERDTreeTabsToggle<CR>
-"let g:nerdtree_tabs_open_on_gui_startup=1
-"let g:nerdtree_tabs_open_on_console_startup=1
-"let g:nerdtree_tabs_smart_startup_focus=1
+"map <Leader>n <plug>:NERDTreeTabsToggle<CR>
+let g:nerdtree_tabs_open_on_gui_startup=1
+let g:nerdtree_tabs_open_on_console_startup=1
+let g:nerdtree_tabs_smart_startup_focus=1
