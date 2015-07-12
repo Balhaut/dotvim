@@ -53,7 +53,7 @@ colorscheme solarized
 " let g:ackprg = 'ag --vimgrep'
 
 " CommandT bindings
-map <Leader>g :CommandT /Users/carnold/Projects<CR>
+map <Leader>g :CommandT ~/Projects<CR>
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
