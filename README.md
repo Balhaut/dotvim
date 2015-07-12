@@ -10,3 +10,6 @@ git submodule update --checkout
 vim +PluginInstall
 ```
 That will load vim and install the plugins in .vimrc.
+
+###Notes
+I'm a newbie to vim at this time, so the arrow keys have been bound to nothing to force better habits.
