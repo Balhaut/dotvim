@@ -78,3 +78,14 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+
+set tabstop=4
+set backspace=indent,eol,start
+set autoindent
+set copyindent
+set number
+set shiftwidth=4
+set shiftround
+set showmatch
+set ignorecase
+set smarttab
