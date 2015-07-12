@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/Users/carnold/.chefdk/gem/ruby/2.1.0/gems/kitchen-gce-0.2.0'
 let g:netrw_dirhist_2='/Users/carnold/Projects/cookbooks/identity-cookbook'
 let g:netrw_dirhist_3='/Users/carnold/Projects/cookbooks'
+let g:netrw_dirhist_4='/Users/carnold/Projects/terra'
+let g:netrw_dirhist_5='/Users/carnold/Projects'
+let g:netrw_dirhist_6='/Users/carnold/.vim/bundle/command-t/ruby/command-t'

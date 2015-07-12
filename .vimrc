@@ -38,15 +38,16 @@ filetype plugin indent on    " required
 
 " Reloads vimrc changes
 autocmd BufNewFile,BufRead *.json set ft=javascript
-autocmd BufWritePost ~/.vimrc source ~/.vimrc
+"autocmd BufWritePost ~/.vimrc source ~/.vimrc
 set showcmd
 let mapleader = '\' 
 
 " Set theme
 syntax enable
+"set t_Co=256
 set background=dark
 colorscheme solarized
-let g:solarized_termcolors=256
+"let g:solarized_termcolors=256
 
 " Silver Surfer
 " let g:ackprg = 'ag --vimgrep'
@@ -71,3 +72,9 @@ map <Leader>e :NERDTree<CR>
 let g:nerdtree_tabs_open_on_gui_startup=1
 let g:nerdtree_tabs_open_on_console_startup=1
 let g:nerdtree_tabs_smart_startup_focus=1
+
+" Arrow key disables - breaking bad habits
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
