@@ -13,3 +13,8 @@ That will load vim and install the plugins in .vimrc.
 
 ###Notes
 I'm a newbie to vim at this time, so the arrow keys have been bound to nothing to force better habits.
+
+The easymotion plugin requires vim compiled with ruby, and has to be compiled itself with the same ruby version.
+If you're like me and have the env ruby set to Chef's, CommandT should be built with the OSX ruby instead, which should match the version vim was compiled with:
+`/usr/bin/ruby extconf.rb && make`
+
