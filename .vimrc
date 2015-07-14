@@ -16,6 +16,8 @@ Plugin 'avakhov/vim-yaml'
 " Plugin 'tomtom/tcomment_vim'
 " Plugin 'ggreer/the_silver_searcher'
 Plugin 'wincent/command-t'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
 " Themes
 Plugin 'altercation/vim-colors-solarized'
@@ -38,7 +40,7 @@ filetype plugin indent on    " required
 
 " Reloads vimrc changes
 autocmd BufNewFile,BufRead *.json set ft=javascript
-"autocmd BufWritePost ~/.vimrc source ~/.vimrc
+autocmd BufWritePost ~/.vimrc source ~/.vimrc
 set showcmd
 let mapleader = '\' 
 
