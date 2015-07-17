@@ -59,10 +59,7 @@ map <Leader>g :CommandT ~/Projects<CR>
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
-" These `n` & `N` mappings are options. You do not have to map `n` & `N` to
-" EasyMotion.
-" " Without these mappings, `n` & `N` works fine. (These mappings just provide
-" " different highlight method and have some other features )
+" Easymotion highlighting during searches.
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
 
@@ -71,17 +68,21 @@ map <Leader>e :NERDTree<CR>
 
 " NERDTree Tabs
 "map <Leader>n <plug>:NERDTreeTabsToggle<CR>
-let g:nerdtree_tabs_open_on_gui_startup=1
-let g:nerdtree_tabs_open_on_console_startup=1
-let g:nerdtree_tabs_smart_startup_focus=1
+" let g:nerdtree_tabs_open_on_gui_startup=1
+" let g:nerdtree_tabs_open_on_console_startup=1
+" let g:nerdtree_tabs_smart_startup_focus=1
 
-" Arrow key disables - breaking bad habits
+" Arrow key disables - breaking bad habits.
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
+" Use tabs for makefiles.
+autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+
 set tabstop=4
+set expandtab
 set backspace=indent,eol,start
 set autoindent
 set copyindent
