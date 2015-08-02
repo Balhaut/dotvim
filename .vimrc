@@ -9,19 +9,20 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
-" Plugin 'scrooloose/syntastic'
-" Plugin 't9md/vim-chef'
+Plugin 'scrooloose/syntastic'
+Plugin 't9md/vim-chef'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'avakhov/vim-yaml'
 " Plugin 'tomtom/tcomment_vim'
-" Plugin 'ggreer/the_silver_searcher'
 Plugin 'wincent/command-t'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'lilydjwg/colorizer'
+Plugin 'gerw/vim-HiLinkTrace'
+Plugin 'maciakl/vim-neatstatus'
 
 " Themes
 Plugin 'altercation/vim-colors-solarized'
-" Plugin 'wincent/command-t'
 
 call vundle#end()            " required
 
@@ -44,22 +45,46 @@ autocmd BufWritePost ~/.vimrc source ~/.vimrc
 set showcmd
 let mapleader = '\' 
 
+" Misc vim options
+set noerrorbells
+set mouse=a
+set nostartofline
+set title
+
 " Set theme
 syntax enable
-"set t_Co=256
+set t_Co=16
+
 set background=dark
-colorscheme solarized
+"colorscheme solarized
 "let g:solarized_termcolors=256
 
-" Silver Surfer
-" let g:ackprg = 'ag --vimgrep'
+" NeatStatusLine customizations
+let g:NeatStatusLine_color_normal = 'ctermbg=Black ctermfg=Magenta'
+let g:NeatStatusLine_color_insert = 'ctermbg=Yellow ctermfg=Black'
+let g:NeatStatusLine_color_replace = 'ctermbg=Red ctermfg=Black'
+let g:NeatStatusLine_color_filetype = 'ctermfg=0 ctermbg=13'
+let g:NeatStatusLine_color_modified = 'ctermbg=Black ctermfg=Yellow'
+let g:NeatStatusLine_color_line = 'ctermbg=Black ctermfg=Cyan'
+:hi StatusLine ctermfg=0 ctermbg=1
 
-" CommandT bindings
+" syntastic bindings
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" commandt bindings
+map <Leader>r :CommandTFlush<CR>
 map <Leader>g :CommandT ~/Projects<CR>
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
-" Easymotion highlighting during searches.
+" easymotion highlighting in searches
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
 
