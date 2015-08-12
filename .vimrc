@@ -47,7 +47,7 @@ let mapleader = '\'
 
 " Misc vim options
 set noerrorbells
-set mouse=a
+"set mouse=a
 set nostartofline
 set title
 
@@ -81,8 +81,10 @@ let g:syntastic_check_on_wq = 0
 " commandt bindings
 map <Leader>r :CommandTFlush<CR>
 map <Leader>g :CommandT ~/Projects<CR>
+
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
+
 
 " easymotion highlighting in searches
 map  n <Plug>(easymotion-next)
