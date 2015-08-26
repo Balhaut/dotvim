@@ -11,15 +11,16 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/syntastic'
 Plugin 't9md/vim-chef'
-Plugin 'Lokaltog/vim-easymotion'
+Plugin 'easymotion/vim-easymotion'
 Plugin 'avakhov/vim-yaml'
-" Plugin 'tomtom/tcomment_vim'
+Plugin 'tomtom/tcomment_vim'
 Plugin 'wincent/command-t'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'lilydjwg/colorizer'
 Plugin 'gerw/vim-HiLinkTrace'
 Plugin 'maciakl/vim-neatstatus'
+Plugin 'markcornick/vim-terraform'
 
 " Themes
 Plugin 'altercation/vim-colors-solarized'
@@ -44,6 +45,10 @@ autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufWritePost ~/.vimrc source ~/.vimrc
 set showcmd
 let mapleader = '\' 
+
+" Copy/cut visual selection to clipboard.
+vmap <C-c> :w !pbcopy<CR><CR> 
+vmap <C-x> :!pbcopy<CR>  
 
 " Misc vim options
 set noerrorbells
@@ -82,13 +87,13 @@ let g:syntastic_check_on_wq = 0
 map <Leader>r :CommandTFlush<CR>
 map <Leader>g :CommandT ~/Projects<CR>
 
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-
-
-" easymotion highlighting in searches
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
+" easymotion bindings, highlighting in searches
+"map  / <Plug>(easymotion-sn)
+"omap / <Plug>(easymotion-tn)
+"map  n <Plug>(easymotion-next)
+"map  N <Plug>(easymotion-prev)
+nmap s <Plug>(easymotion-s2)
+nmap t <Plug>(easymotion-t2)
 
 " NERDTree bindings
 map <Leader>e :NERDTree<CR>
