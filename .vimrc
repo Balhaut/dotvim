@@ -7,12 +7,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'scrooloose/syntastic'
-Plugin 't9md/vim-chef'
+
+" Plugin 'scrooloose/nerdtree'
+" Plugin 'jistr/vim-nerdtree-tabs'
+
 Plugin 'easymotion/vim-easymotion'
-Plugin 'avakhov/vim-yaml'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'wincent/command-t'
 Plugin 'tpope/vim-fugitive'
@@ -20,7 +19,13 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'lilydjwg/colorizer'
 Plugin 'gerw/vim-HiLinkTrace'
 Plugin 'maciakl/vim-neatstatus'
+
+" Language support/Syntax highlighting
+Plugin 'scrooloose/syntastic'
+Plugin 'avakhov/vim-yaml'
 Plugin 'markcornick/vim-terraform'
+Plugin 'bash-support.vim'
+Plugin 't9md/vim-chef'
 
 " Themes
 Plugin 'altercation/vim-colors-solarized'
@@ -83,20 +88,24 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" vim-chef bindings
+map <Leader>c :ChefFindAny<CR>
+
 " commandt bindings
 map <Leader>r :CommandTFlush<CR>
 map <Leader>g :CommandT ~/Projects<CR>
 
 " easymotion bindings, highlighting in searches
-"map  / <Plug>(easymotion-sn)
-"omap / <Plug>(easymotion-tn)
-"map  n <Plug>(easymotion-next)
-"map  N <Plug>(easymotion-prev)
-nmap s <Plug>(easymotion-s2)
-nmap t <Plug>(easymotion-t2)
+map <Leader> <Plug>(easymotion-prefix)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+nmap <Leader><Leader>s <Plug>(easymotion-s2)
+nmap <Leader><Leader>t <Plug>(easymotion-t2)
 
 " NERDTree bindings
-map <Leader>e :NERDTree<CR>
+" map <Leader>e :NERDTree<CR>
 
 " NERDTree Tabs
 "map <Leader>n <plug>:NERDTreeTabsToggle<CR>
@@ -124,3 +133,4 @@ set shiftround
 set showmatch
 set ignorecase
 set smarttab
+set scrolloff=999
