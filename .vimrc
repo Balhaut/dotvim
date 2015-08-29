@@ -8,17 +8,16 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 
-" Plugin 'scrooloose/nerdtree'
-" Plugin 'jistr/vim-nerdtree-tabs'
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'jistr/vim-nerdtree-tabs'
 
 Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-surround'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'wincent/command-t'
+
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'lilydjwg/colorizer'
-Plugin 'gerw/vim-HiLinkTrace'
-Plugin 'maciakl/vim-neatstatus'
 
 " Language support/Syntax highlighting
 Plugin 'scrooloose/syntastic'
@@ -27,8 +26,13 @@ Plugin 'markcornick/vim-terraform'
 Plugin 'bash-support.vim'
 Plugin 't9md/vim-chef'
 
-" Themes
+" Themes and visual
+Plugin 'lilydjwg/colorizer'
+Plugin 'maciakl/vim-neatstatus'
 Plugin 'altercation/vim-colors-solarized'
+
+" Vim theme dev support - disable for everyday use.
+"Plugin 'gerw/vim-HiLinkTrace'
 
 call vundle#end()            " required
 
@@ -45,26 +49,15 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-" Reloads vimrc changes
+" Auto-reloads vimrc changes
 autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufWritePost ~/.vimrc source ~/.vimrc
-set showcmd
+
 let mapleader = '\' 
 
-" Copy/cut visual selection to clipboard.
-vmap <C-c> :w !pbcopy<CR><CR> 
-vmap <C-x> :!pbcopy<CR>  
-
-" Misc vim options
-set noerrorbells
-"set mouse=a
-set nostartofline
-set title
-
-" Set theme
+" Theme/visual settings
 syntax enable
 set t_Co=16
-
 set background=dark
 "colorscheme solarized
 "let g:solarized_termcolors=256
@@ -88,6 +81,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" Use tabs for makefiles.
+autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+
 " vim-chef bindings
 map <Leader>c :ChefFindAny<CR>
 
@@ -105,13 +101,13 @@ nmap <Leader><Leader>s <Plug>(easymotion-s2)
 nmap <Leader><Leader>t <Plug>(easymotion-t2)
 
 " NERDTree bindings
-" map <Leader>e :NERDTree<CR>
+"map <Leader>e :NERDTree<CR>
 
 " NERDTree Tabs
 "map <Leader>n <plug>:NERDTreeTabsToggle<CR>
-" let g:nerdtree_tabs_open_on_gui_startup=1
-" let g:nerdtree_tabs_open_on_console_startup=1
-" let g:nerdtree_tabs_smart_startup_focus=1
+"let g:nerdtree_tabs_open_on_gui_startup=1
+"let g:nerdtree_tabs_open_on_console_startup=1
+"let g:nerdtree_tabs_smart_startup_focus=1
 
 " Arrow key disables - breaking bad habits.
 noremap <Up> <NOP>
@@ -119,18 +115,25 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-" Use tabs for makefiles.
-autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+" Copy/cut visual selection to clipboard (pbcopy).
+vmap <C-c> :w !pbcopy<CR><CR> 
+vmap <C-x> :!pbcopy<CR>  
 
-set tabstop=4
-set expandtab
-set backspace=indent,eol,start
+" Misc vim options
 set autoindent
+set backspace=indent,eol,start
 set copyindent
-set number
-set shiftwidth=4
-set shiftround
-set showmatch
+set expandtab
 set ignorecase
-set smarttab
+"set mouse=a
+set noerrorbells
+set nostartofline
+set number
 set scrolloff=999
+set shiftround
+set shiftwidth=4
+set showcmd
+set showmatch
+set smarttab
+set tabstop=4
+set title
