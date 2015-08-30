@@ -110,10 +110,14 @@ nmap <Leader><Leader>t <Plug>(easymotion-t2)
 "let g:nerdtree_tabs_smart_startup_focus=1
 
 " Arrow key disables - breaking bad habits.
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+nnoremap <Up> <NOP>
+nnoremap <Down> <NOP>
+nnoremap <Left> <NOP>
+nnoremap <Right> <NOP>
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
 
 " Copy/cut visual selection to clipboard (pbcopy).
 vmap <C-c> :w !pbcopy<CR><CR> 
