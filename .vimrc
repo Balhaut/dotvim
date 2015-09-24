@@ -13,23 +13,29 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-surround'
-Plugin 'tomtom/tcomment_vim'
 Plugin 'wincent/command-t'
 
+" Development environment tools
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/syntastic'
+Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
 " Language support/Syntax highlighting
-Plugin 'scrooloose/syntastic'
 Plugin 'avakhov/vim-yaml'
 Plugin 'markcornick/vim-terraform'
 Plugin 'bash-support.vim'
-Plugin 't9md/vim-chef'
+" Plugin 't9md/vim-chef'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'fatih/vim-go'
+Plugin 'suan/vim-instant-markdown'
 
 " Themes and visual
-Plugin 'lilydjwg/colorizer'
 Plugin 'maciakl/vim-neatstatus'
-Plugin 'altercation/vim-colors-solarized'
+" Plugin 'lilydjwg/colorizer'
+" Plugin 'altercation/vim-colors-solarized'
 
 " Vim theme dev support - disable for everyday use.
 "Plugin 'gerw/vim-HiLinkTrace'
@@ -71,6 +77,10 @@ let g:NeatStatusLine_color_modified = 'ctermbg=Black ctermfg=Yellow'
 let g:NeatStatusLine_color_line = 'ctermbg=Black ctermfg=Cyan'
 :hi StatusLine ctermfg=0 ctermbg=1
 
+" tagbar bindings
+" let g:tagbar_ctags_bin
+nmap <Leader><Leader>b :TagbarToggle<CR>
+
 " syntastic bindings
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
@@ -84,12 +94,32 @@ let g:syntastic_check_on_wq = 0
 " Use tabs for makefiles.
 autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
+" Markdown preview
+let g:instant_markdown_autostart = 0
+au FileType markdown nmap <Leader>p :InstantMarkdownPreview<CR>
+
 " vim-chef bindings
-map <Leader>c :ChefFindAny<CR>
+" map <Leader>c :ChefFindAny<CR>
+
+" vim-go bindings
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gdv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gdb <Plug>(go-doc-browser)
+au FileType go nmap <Leader>gi <Plug>(go-implements)
+au FileType go nmap <Leader>gr <Plug>(go-rename)
+
+" let g:go_highlight_functions = 1
+" let g:go_highlight_methods = 1
+" let g:go_highlight_structs = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_build_constraints = 1
 
 " commandt bindings
 map <Leader>r :CommandTFlush<CR>
-map <Leader>g :CommandT ~/Projects<CR>
+" map <Leader>g :CommandT ~/Projects<CR>
 
 " easymotion bindings, highlighting in searches
 map <Leader> <Plug>(easymotion-prefix)
