@@ -8,12 +8,10 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 
-"Plugin 'scrooloose/nerdtree'
-"Plugin 'jistr/vim-nerdtree-tabs'
-
+" Helpers/Utils
+Plugin 'wincent/command-t'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-surround'
-Plugin 'wincent/command-t'
 
 " Development environment tools
 Plugin 'Valloric/YouCompleteMe'
@@ -27,7 +25,6 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'avakhov/vim-yaml'
 Plugin 'markcornick/vim-terraform'
 Plugin 'bash-support.vim'
-" Plugin 't9md/vim-chef'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'fatih/vim-go'
 Plugin 'suan/vim-instant-markdown'
@@ -36,9 +33,6 @@ Plugin 'suan/vim-instant-markdown'
 Plugin 'maciakl/vim-neatstatus'
 " Plugin 'lilydjwg/colorizer'
 " Plugin 'altercation/vim-colors-solarized'
-
-" Vim theme dev support - disable for everyday use.
-"Plugin 'gerw/vim-HiLinkTrace'
 
 call vundle#end()            " required
 
@@ -65,8 +59,6 @@ let mapleader = '\'
 syntax enable
 set t_Co=16
 set background=dark
-"colorscheme solarized
-"let g:solarized_termcolors=256
 
 " NeatStatusLine customizations
 let g:NeatStatusLine_color_normal = 'ctermbg=Black ctermfg=Magenta'
@@ -77,15 +69,17 @@ let g:NeatStatusLine_color_modified = 'ctermbg=Black ctermfg=Yellow'
 let g:NeatStatusLine_color_line = 'ctermbg=Black ctermfg=Cyan'
 :hi StatusLine ctermfg=0 ctermbg=1
 
+" Omni completion
+set omnifunc=syntaxcomplete#Complete
+
 " tagbar bindings
 " let g:tagbar_ctags_bin
 nmap <Leader><Leader>b :TagbarToggle<CR>
 
 " syntastic bindings
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -97,9 +91,6 @@ autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 " Markdown preview
 let g:instant_markdown_autostart = 0
 au FileType markdown nmap <Leader>p :InstantMarkdownPreview<CR>
-
-" vim-chef bindings
-" map <Leader>c :ChefFindAny<CR>
 
 " vim-go bindings
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
@@ -130,20 +121,17 @@ map  N <Plug>(easymotion-prev)
 nmap <Leader><Leader>s <Plug>(easymotion-s2)
 nmap <Leader><Leader>t <Plug>(easymotion-t2)
 
-" NERDTree bindings
-"map <Leader>e :NERDTree<CR>
+" Navigation bindings
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
-" NERDTree Tabs
-"map <Leader>n <plug>:NERDTreeTabsToggle<CR>
-"let g:nerdtree_tabs_open_on_gui_startup=1
-"let g:nerdtree_tabs_open_on_console_startup=1
-"let g:nerdtree_tabs_smart_startup_focus=1
-
-" Arrow key disables - breaking bad habits.
 nnoremap <Up> <NOP>
 nnoremap <Down> <NOP>
 nnoremap <Left> <NOP>
 nnoremap <Right> <NOP>
+
 inoremap <Up> <NOP>
 inoremap <Down> <NOP>
 inoremap <Left> <NOP>
@@ -154,20 +142,40 @@ vmap <C-c> :w !pbcopy<CR><CR>
 vmap <C-x> :!pbcopy<CR>  
 
 " Misc vim options
-set autoindent
 set backspace=indent,eol,start
-set copyindent
-set expandtab
 set ignorecase
 "set mouse=a
 set noerrorbells
 set nostartofline
 set number
-set scrolloff=999
-set shiftround
-set shiftwidth=4
+set scrolloff=5
 set showcmd
 set showmatch
+" set title
+" set ttyfast                             " Faster redrawing
+
+" Tabs
+set autoindent
+" set copyindent
+set expandtab
 set smarttab
 set tabstop=4
-set title
+set shiftwidth=4
+" set shiftround
+
+" Persistent undo
+set undodir=~/.vimundo                  " Where undo files are saved
+set undofile                            " Undo diffs are saved in files
+set undolevels=10000                    " Max number of undos per file
+set undoreload=100000                   " Save the whole buffer for undo when reloading it
+
+" Backup
+set nobackup
+set nowritebackup
+
+" Open buffers with cursor set to its last position
+autocmd BufReadPost *
+  \ if line("'\'") > 0 && line("'\'") <= line("$") |
+    \   exe "normal g`\"" |
+      \ endif
+
