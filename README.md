@@ -11,10 +11,22 @@ vim +PluginInstall
 ```
 That will load vim and install the plugins in .vimrc.
 
-###Notes
+##Notes
 I'm a newbie to vim at this time, so the arrow keys have been bound to nothing to force better habits.
 
-The easymotion plugin requires vim compiled with ruby, and has to be compiled itself with the same ruby version.
-If you're like me and have the env ruby set to Chef's, CommandT should be built with the OSX ruby instead, which should match the version vim was compiled with:
+### Compiling YouCompleteMe
+
+On an ubuntu VM, ensure vim 7.3.598+ compiled with +python.
+```bash
+sudo apt-get install build-essential cmake python-dev
+cd ~/.vim/bundle/YouCompleteMe
+./install.py --gocode-completer
+```
+This installs with golang support, reference the YCM [github](https://github.com/Valloric/YouCompleteMe) for more details.
+
+### Compiling EasyMotion
+The easymotion plugin requires vim compiled with ruby, and must be compiled with vim's version.
+
+On OSX - If you're like me and have the env ruby set to Chef's, CommandT should be built with the system ruby instead, which should match the version vim was compiled with:
 `/usr/bin/ruby extconf.rb && make`
 
