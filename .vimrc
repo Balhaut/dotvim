@@ -11,23 +11,26 @@ Plugin 'gmarik/Vundle.vim'
 " Helpers/Utils
 Plugin 'wincent/command-t'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'tpope/vim-surround'
+" Plugin 'tpope/vim-surround'
+" Plugin 'ciaranm/detectindent'
 
 " Development environment tools
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/syntastic'
+" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'majutsushi/tagbar'
+" Plugin 'scrooloose/syntastic'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
+" Plugin 'tpope/vim-fugitive'
+" Plugin 'airblade/vim-gitgutter'
 
 " Language support/Syntax highlighting
+" Plugin 'klen/python-mode'
 Plugin 'avakhov/vim-yaml'
-Plugin 'markcornick/vim-terraform'
 Plugin 'bash-support.vim'
 Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'fatih/vim-go'
-Plugin 'suan/vim-instant-markdown'
+" Plugin 'fatih/vim-go'
+" Plugin 'suan/vim-instant-markdown'
+" Plugin 'syslog-syntax-file'
+Plugin 'rust-lang/rust.vim'
 
 " Themes and visual
 Plugin 'maciakl/vim-neatstatus'
@@ -35,6 +38,9 @@ Plugin 'maciakl/vim-neatstatus'
 " Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()            " required
+
+" Force bash instead of zsh within vim.
+set shell=bash\ -i
 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -53,12 +59,27 @@ filetype plugin indent on    " required
 autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufWritePost ~/.vimrc source ~/.vimrc
 
-let mapleader = '\' 
+let mapleader = '\'
 
 " Theme/visual settings
 syntax enable
 set t_Co=16
+" colorscheme desert
 set background=dark
+
+highlight Cursor guifg=white guibg=black
+highlight iCursor guifg=white guibg=steelblue
+set guicursor=n-v-c:block-Cursor
+set guicursor+=i:ver100-iCursor
+set guicursor+=n-v-c:blinkon0
+set guicursor+=i:blinkwait10
+
+" Toggle paste mode.
+nmap <leader>p :set paste!<CR>
+
+" Toggle for seeing line breaks and trailing spaces.
+nmap <leader>l :set list!<CR>
+set listchars=tab:>-,eol:¬,nbsp:▪,trail:▪
 
 " NeatStatusLine customizations
 let g:NeatStatusLine_color_normal = 'ctermbg=Black ctermfg=Magenta'
@@ -74,7 +95,7 @@ set omnifunc=syntaxcomplete#Complete
 
 " tagbar bindings
 " let g:tagbar_ctags_bin
-nmap <Leader><Leader>b :TagbarToggle<CR>
+" nmap <Leader><Leader>b :TagbarToggle<CR>
 
 " syntastic bindings
 " set statusline+=%#warningmsg#
@@ -85,22 +106,24 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" Use tabs for makefiles.
-autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+
+" Detect Indent plugin settings, prefer expandtab and prefer 4 spaces.
+" :let g:detectindent_preferred_expandtab = 1
+" :let g:detectindent_preferred_indent = 4
 
 " Markdown preview
 let g:instant_markdown_autostart = 0
-au FileType markdown nmap <Leader>p :InstantMarkdownPreview<CR>
+au FileType markdown nmap <Leader><Leader>m :InstantMarkdownPreview<CR>
 
 " vim-go bindings
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gdv <Plug>(go-doc-vertical)
-au FileType go nmap <Leader>gdb <Plug>(go-doc-browser)
-au FileType go nmap <Leader>gi <Plug>(go-implements)
-au FileType go nmap <Leader>gr <Plug>(go-rename)
+" au FileType go nmap <Leader>ds <Plug>(go-def-split)
+" au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+" au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+" au FileType go nmap <Leader>gd <Plug>(go-doc)
+" au FileType go nmap <Leader>gdv <Plug>(go-doc-vertical)
+" au FileType go nmap <Leader>gdb <Plug>(go-doc-browser)
+" au FileType go nmap <Leader>gi <Plug>(go-implements)
+" au FileType go nmap <Leader>gr <Plug>(go-rename)
 
 " let g:go_highlight_functions = 1
 " let g:go_highlight_methods = 1
@@ -110,7 +133,7 @@ au FileType go nmap <Leader>gr <Plug>(go-rename)
 
 " commandt bindings
 map <Leader>r :CommandTFlush<CR>
-" map <Leader>g :CommandT ~/Projects<CR>
+let g:CommandTWildIgnore=&wildignore . ",**/node_modules/*"
 
 " easymotion bindings, highlighting in searches
 map <Leader> <Plug>(easymotion-prefix)
@@ -137,6 +160,10 @@ inoremap <Down> <NOP>
 inoremap <Left> <NOP>
 inoremap <Right> <NOP>
 
+" Move the recording binding to Ctrl-q because I fat finger it too often.
+nnoremap q <NOP>
+noremap <C-q> q
+
 " Copy/cut visual selection to clipboard (pbcopy).
 vmap <C-c> :w !pbcopy<CR><CR> 
 vmap <C-x> :!pbcopy<CR>  
@@ -144,38 +171,54 @@ vmap <C-x> :!pbcopy<CR>
 " Misc vim options
 set backspace=indent,eol,start
 set ignorecase
-"set mouse=a
+set gcr+=a:blinkon0
+set mouse=a
 set noerrorbells
 set nostartofline
 set number
 set scrolloff=5
 set showcmd
 set showmatch
+" set hlsearch
 " set title
-" set ttyfast                             " Faster redrawing
 
 " Tabs
 set autoindent
 " set copyindent
+" set smarttab
 set expandtab
-set smarttab
-set tabstop=4
 set shiftwidth=4
+set softtabstop=4
+" set tabstop=4
 " set shiftround
 
+" File type-specific settings
+set modeline
+" autocmd FileType yaml set tabstop=2 expandtab shiftwidth=2 softtabstop=2 syntax=yaml
+autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+
 " Persistent undo
-set undodir=~/.vimundo                  " Where undo files are saved
-set undofile                            " Undo diffs are saved in files
-set undolevels=10000                    " Max number of undos per file
-set undoreload=100000                   " Save the whole buffer for undo when reloading it
+" set undodir=~/.vimundo                  " Where undo files are saved
+" set undofile                            " Undo diffs are saved in files
+" set undolevels=10000                    " Max number of undos per file
+" set undoreload=100000                   " Save the whole buffer for undo when reloading it
 
 " Backup
 set nobackup
 set nowritebackup
+
+" Performance
+set synmaxcol=256
+set ttyfast " u got a fast terminal
+set ttyscroll=10
+set lazyredraw " to avoid scrolling problems
+
 
 " Open buffers with cursor set to its last position
 autocmd BufReadPost *
   \ if line("'\'") > 0 && line("'\'") <= line("$") |
     \   exe "normal g`\"" |
       \ endif
+
+" File extension-specific settings
 
