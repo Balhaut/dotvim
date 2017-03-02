@@ -1,43 +1,51 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Helpers/Utils
-Plugin 'wincent/command-t'
-Plugin 'easymotion/vim-easymotion'
-" Plugin 'tpope/vim-surround'
-" Plugin 'ciaranm/detectindent'
+Plug 'wincent/command-t', {
+  \    'do': 'cd ruby/command-t && /usr/bin/ruby extconf.rb && make'
+  \  }
+Plug 'easymotion/vim-easymotion'
+" Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sleuth'
 
 " Development environment tools
-" Plugin 'Valloric/YouCompleteMe'
-" Plugin 'majutsushi/tagbar'
-" Plugin 'scrooloose/syntastic'
-Plugin 'tomtom/tcomment_vim'
-" Plugin 'tpope/vim-fugitive'
-" Plugin 'airblade/vim-gitgutter'
+" Plug 'Valloric/YouCompleteMe'
+Plug 'Shougo/neocomplete'
+" Plug 'majutsushi/tagbar'
+" Plug 'scrooloose/syntastic'
+Plug 'tomtom/tcomment_vim'
+" Plug 'tpope/vim-fugitive'
+" Plug 'airblade/vim-gitgutter'
 
 " Language support/Syntax highlighting
-" Plugin 'klen/python-mode'
-Plugin 'avakhov/vim-yaml'
-Plugin 'bash-support.vim'
-Plugin 'ekalinin/Dockerfile.vim'
-" Plugin 'fatih/vim-go'
-" Plugin 'suan/vim-instant-markdown'
-" Plugin 'syslog-syntax-file'
-Plugin 'rust-lang/rust.vim'
+" Plug 'klen/python-mode'
+Plug 'avakhov/vim-yaml'
+Plug 'bash-support.vim'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'fatih/vim-go', { 'for': 'go' }
+" Plug 'suan/vim-instant-markdown'
+" Plug 'syslog-syntax-file'
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'leshill/vim-json'
 
 " Themes and visual
-Plugin 'maciakl/vim-neatstatus'
-" Plugin 'lilydjwg/colorizer'
-" Plugin 'altercation/vim-colors-solarized'
+Plug 'maciakl/vim-neatstatus'
+" Plug 'lilydjwg/colorizer'
+" Plug 'altercation/vim-colors-solarized'
 
-call vundle#end()            " required
+call plug#end()
+
+" vim-plug commands for above:
+"   PlugInstall [name ...]
+"   PlugUpdate [name ...]
+"   PlugClean[!]
+"   PlugUpgrade
+"   PlugStatus
+"   PlugDiff
+"   PlugSnapshot[!] [output path]
 
 " Force bash instead of zsh within vim.
 set shell=bash\ -i
@@ -45,15 +53,6 @@ set shell=bash\ -i
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 " filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 " Auto-reloads vimrc changes
 autocmd BufNewFile,BufRead *.json set ft=javascript
@@ -116,20 +115,27 @@ let g:instant_markdown_autostart = 0
 au FileType markdown nmap <Leader><Leader>m :InstantMarkdownPreview<CR>
 
 " vim-go bindings
-" au FileType go nmap <Leader>ds <Plug>(go-def-split)
-" au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-" au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-" au FileType go nmap <Leader>gd <Plug>(go-doc)
-" au FileType go nmap <Leader>gdv <Plug>(go-doc-vertical)
-" au FileType go nmap <Leader>gdb <Plug>(go-doc-browser)
-" au FileType go nmap <Leader>gi <Plug>(go-implements)
-" au FileType go nmap <Leader>gr <Plug>(go-rename)
+au FileType go nmap <leader>gr <Plug>(go-run)
+au FileType go nmap <leader>gb <Plug>(go-build)
+au FileType go nmap <leader>gt <Plug>(go-test)
+au FileType go nmap <leader>gco <Plug>(go-coverage)
+au FileType go nmap <leader>gcb <Plug>(go-coverage-browser)
+au FileType go nmap <leader>gcc <Plug>(go-coverage-clear)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gdv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gdb <Plug>(go-doc-browser)
+au FileType go nmap <Leader>gs <Plug>(go-implements)
+au FileType go nmap <leader>gi <Plug>(go-info)
+au FileType go nmap <Leader>gr <Plug>(go-rename)
 
-" let g:go_highlight_functions = 1
-" let g:go_highlight_methods = 1
-" let g:go_highlight_structs = 1
-" let g:go_highlight_operators = 1
-" let g:go_highlight_build_constraints = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
 " commandt bindings
 map <Leader>r :CommandTFlush<CR>
