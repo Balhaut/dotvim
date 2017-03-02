@@ -2,6 +2,7 @@
 
 There maybe easier ways to do this, but my process is to run these commands starting from your home folder:
 ```bash
+cd $HOME
 git clone https://github.com/Balhaut/dotvim .vim
 ln -s ~/.vim/.vimrc
 cd .vim
