@@ -13,7 +13,7 @@ Plug 'tpope/vim-sleuth'
 
 " Development environment tools
 " Plug 'Valloric/YouCompleteMe'
-Plug 'Shougo/neocomplete'
+" Plug 'Shougo/neocomplete'
 " Plug 'majutsushi/tagbar'
 " Plug 'scrooloose/syntastic'
 Plug 'tomtom/tcomment_vim'
@@ -25,9 +25,9 @@ Plug 'tomtom/tcomment_vim'
 Plug 'avakhov/vim-yaml'
 Plug 'bash-support.vim'
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'fatih/vim-go', { 'for': 'go' }
-" Plug 'suan/vim-instant-markdown'
-" Plug 'syslog-syntax-file'
+Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'leshill/vim-json'
 
@@ -112,6 +112,7 @@ let g:syntastic_check_on_wq = 0
 
 " Markdown preview
 let g:instant_markdown_autostart = 0
+let g:instant_markdown_slow = 1
 au FileType markdown nmap <Leader><Leader>m :InstantMarkdownPreview<CR>
 
 " vim-go bindings
@@ -226,5 +227,12 @@ autocmd BufReadPost *
     \   exe "normal g`\"" |
       \ endif
 
-" File extension-specific settings
-
+" Jedi options
+let g:jedi#use_splits_not_buffers = "right"
+let g:jedi#goto_command = "<leader>po"
+let g:jedi#goto_assignments_command = "<leader>pg"
+let g:jedi#goto_definitions_command = "<leader>pf"
+let g:jedi#documentation_command = "<leader>pd"
+let g:jedi#usages_command = "<leader>pu"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>pr"
