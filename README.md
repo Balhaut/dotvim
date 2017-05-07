@@ -2,13 +2,14 @@
 
 There maybe easier ways to do this, but my process is to run these commands starting from your home folder:
 ```bash
-cd $HOME
-git clone https://github.com/Balhaut/dotvim .vim
+# Symlink .vimrc from home to this repo's .vimrc.
 ln -s ~/.vim/.vimrc
-cd .vim
-git submodule init
-git submodule update --checkout
-vim +PluginInstall
+
+# Install vim-plug (we don't keep it in this repository).
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# Open vim and run PlugInstall or from the command line...
+vim +PlugInstall
 ```
 That will load vim and install the plugins in .vimrc.
 

@@ -23,7 +23,7 @@ Plug 'tomtom/tcomment_vim'
 " Language support/Syntax highlighting
 " Plug 'klen/python-mode'
 Plug 'avakhov/vim-yaml'
-Plug 'bash-support.vim'
+" Plug 'bash-support.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'fatih/vim-go', { 'for': 'go' }
