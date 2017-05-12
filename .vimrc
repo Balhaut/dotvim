@@ -8,7 +8,7 @@ Plug 'wincent/command-t', {
   \    'do': 'cd ruby/command-t && /usr/bin/ruby extconf.rb && make'
   \  }
 Plug 'easymotion/vim-easymotion'
-" Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
 
 " Development environment tools
